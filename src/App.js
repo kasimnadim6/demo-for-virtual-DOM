@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Button from './components/button';
+import Display from './components/display'
 import './App.css';
 
 function App() {
+  const time = new Date().toLocaleTimeString();
+
+  const [counter, setCounter] = useState(5);
+  const incrementHandler = (incValue) => {
+    setCounter(counter + incValue);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="buttons">
+        <Button onClickFunction={incrementHandler} increment={1} />
+        <Button onClickFunction={incrementHandler} increment={2} />
+        <Button onClickFunction={incrementHandler} increment={3} />
+      </div>
+      <div>
+        <Display message={counter} />
+      </div>
+      <hr />
+      <div>
+        <p>--------------------------------------------</p>
+        <p>React HTML</p>
+        <p>--------------------------------------------</p>
+        <input/>
+        <pre>{time}</pre>
+      </div>
     </div>
   );
 }
